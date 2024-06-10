@@ -386,8 +386,7 @@ func TestReadEmployeeListAPI(t *testing.T) {
 				offset: 2,
 			},
 			want:    nil,
-			wantErr: false,
-			//NB: error will be false ,because if there is no object in response, it will return empty array
+			wantErr: true,
 		},
 		{
 			name: "Read employee list with invalid limit value",
@@ -397,9 +396,7 @@ func TestReadEmployeeListAPI(t *testing.T) {
 				offset: 2,
 			},
 			want:    nil,
-			wantErr: false,
-			//NB: error will be false ,because if there no object in response,it will return empty array
-
+			wantErr: true,
 		},
 		{
 			name: "Read employee list with invalid limit and offset value",
@@ -409,9 +406,7 @@ func TestReadEmployeeListAPI(t *testing.T) {
 				offset: 0,
 			},
 			want:    nil,
-			wantErr: false,
-			//NB: error will be false ,because if there no object in response,it will return empty array
-
+			wantErr: true,
 		},
 	}
 	for _, tt := range tests {
@@ -421,7 +416,6 @@ func TestReadEmployeeListAPI(t *testing.T) {
 				t.Errorf("ReadEmployeeListAPI() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
-			fmt.Println(got)
 			for i := range tt.want {
 				tt.want[i].ID = got[i].ID
 				tt.want[i].CreatedAt = got[i].CreatedAt
