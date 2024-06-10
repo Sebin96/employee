@@ -11,6 +11,6 @@ Run Application
 
 Run Unit tests
 
--go test
+- go test
 
 
